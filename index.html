@@ -23,6 +23,67 @@ overflow-x:hidden;
 color:#444;
 }
 
+  #welcomeScreen{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(135deg,#fff,#ffeef6,#ffdbe8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+    transition:1s;
+}
+
+.welcomeCard{
+    background:white;
+    padding:50px;
+    border-radius:35px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(255,170,200,.3);
+    animation:pop .8s;
+}
+
+.welcomeCard h1{
+    font-family:'Great Vibes',cursive;
+    color:#ff6fa5;
+    font-size:65px;
+    margin-bottom:20px;
+}
+
+.welcomeCard p{
+    color:#777;
+    margin-bottom:30px;
+    font-size:20px;
+}
+
+#startBtn{
+
+    border:none;
+    padding:18px 45px;
+    border-radius:50px;
+    background:#ff84b7;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#startBtn:hover{
+    transform:scale(1.08);
+    background:#ff6fa5;
+}
+
+@keyframes pop{
+from{
+    transform:scale(.7);
+    opacity:0;
+}
+to{
+    transform:scale(1);
+    opacity:1;
+}
+}
+  
 /* Floating Hearts */
 
 .hearts{
@@ -187,7 +248,27 @@ padding:25px;
 <div class="hearts" id="hearts"></div>
 
 <section class="hero">
+<!-- Opening Screen -->
+<div id="welcomeScreen">
 
+    <div class="welcomeCard">
+
+        <h1>For Abdullah 🤍</h1>
+
+        <p>Click the button to begin our little love story ✨</p>
+
+        <button id="startBtn">
+            🎵 Play Music & Open
+        </button>
+
+    </div>
+
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="love.mp3" type="audio/mpeg">
+</audio>
+  
 <h1>For Abdullah ❤️</h1>
 
 <p>
@@ -267,7 +348,22 @@ Made with 🤍 especially for Abdullah
 </footer>
 
 <script>
+const startBtn = document.getElementById("startBtn");
+const welcome = document.getElementById("welcomeScreen");
+const music = document.getElementById("bgMusic");
 
+startBtn.addEventListener("click", () => {
+
+    music.play();
+
+    welcome.style.opacity = "0";
+
+    setTimeout(() => {
+        welcome.style.display = "none";
+    },1000);
+
+});
+  
 const hearts=document.getElementById("hearts");
 
 for(let i=0;i<40;i++){
@@ -293,4 +389,5 @@ hearts.appendChild(h);
 </script>
 
 </body>
+
 </html>
